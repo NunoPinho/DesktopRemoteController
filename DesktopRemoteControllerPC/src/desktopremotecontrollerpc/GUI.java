@@ -1,21 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package desktopremotecontrollerpc;
 
-/**
- *
- * @author nmsp1
- */
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class GUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GUI
-     */
+    public static AppConnection connect = new AppConnection();
+    
     public GUI() {
         initComponents();
+        machineIpLabel.setText(connect.getIpAddress());
+        currentPortLabel.setText("3000");
     }
 
     /**
@@ -27,8 +22,6 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        onButton = new javax.swing.JButton();
-        offbutton = new javax.swing.JButton();
         currentStateLabel = new javax.swing.JLabel();
         ipLabel = new javax.swing.JLabel();
         machineIpLabel = new javax.swing.JLabel();
@@ -36,17 +29,6 @@ public class GUI extends javax.swing.JFrame {
         currentPortLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        onButton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        onButton.setText("On");
-        onButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                onButtonActionPerformed(evt);
-            }
-        });
-
-        offbutton.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        offbutton.setText("Off");
 
         currentStateLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         currentStateLabel.setText("Current State Label");
@@ -68,26 +50,19 @@ public class GUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(181, 181, 181)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(189, 189, 189)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ipLabel)
-                                .addGap(18, 18, 18)
-                                .addComponent(machineIpLabel))
-                            .addComponent(currentStateLabel)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(onButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(offbutton))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(181, 181, 181)
-                        .addComponent(portLabel)
+                        .addComponent(ipLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(currentPortLabel)))
-                .addContainerGap(190, Short.MAX_VALUE))
+                        .addComponent(machineIpLabel))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(currentStateLabel)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(portLabel)
+                            .addGap(18, 18, 18)
+                            .addComponent(currentPortLabel))))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,22 +75,13 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(portLabel)
                     .addComponent(currentPortLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
                 .addComponent(currentStateLabel)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(onButton)
-                    .addComponent(offbutton))
-                .addGap(104, 104, 104))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void onButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_onButtonActionPerformed
-        AppConnection connect = new AppConnection();
-        connect.startServer(3000);
-    }//GEN-LAST:event_onButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,15 +116,17 @@ public class GUI extends javax.swing.JFrame {
                 new GUI().setVisible(true);
             }
         });
+        
+            connect.startServer(3000);
+        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel currentPortLabel;
-    private javax.swing.JLabel currentStateLabel;
+    private static javax.swing.JLabel currentStateLabel;
     private javax.swing.JLabel ipLabel;
     private javax.swing.JLabel machineIpLabel;
-    private javax.swing.JButton offbutton;
-    private javax.swing.JButton onButton;
     private javax.swing.JLabel portLabel;
     // End of variables declaration//GEN-END:variables
 }
